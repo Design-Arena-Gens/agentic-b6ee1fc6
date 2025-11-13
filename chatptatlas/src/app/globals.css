@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+:root {
+  --background: #020617;
+  --foreground: #f8fafc;
+  --muted: #1e293b;
+  --accent: #6366f1;
+  --accent-soft: rgba(99, 102, 241, 0.08);
+  --glow: #a855f7;
+  --card: rgba(15, 23, 42, 0.85);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  min-height: 100vh;
+  background:
+      radial-gradient(120% 90% at 80% 10%, rgba(99, 102, 241, 0.18), transparent 65%),
+      radial-gradient(90% 65% at 20% 20%, rgba(14, 165, 233, 0.24), transparent 60%),
+      radial-gradient(100% 100% at 50% 100%, rgba(168, 85, 247, 0.22), transparent 70%),
+      var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+}
+
+::selection {
+  background: rgba(99, 102, 241, 0.35);
+  color: var(--foreground);
+}
+
+.atlas-container {
+  @apply mx-auto w-full max-w-6xl px-6 pb-24 pt-20 sm:px-8 lg:px-10;
+}
+
+.card-glass {
+  @apply rounded-3xl border border-white/5 bg-slate-900/40 shadow-lg shadow-black/50 backdrop-blur-lg transition duration-300;
+}
+
+.card-glass:hover {
+  @apply translate-y-[-2px] border-white/10 shadow-xl shadow-black/40;
+}
+
+.dot-grid {
+  background-image: radial-gradient(circle at center, rgba(148, 163, 184, 0.12) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.glow-ring {
+  position: relative;
+  isolation: isolate;
+}
+
+.glow-ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: conic-gradient(from 180deg at 50% 50%, rgba(99, 102, 241, 0.3), rgba(244, 114, 182, 0.4), rgba(56, 189, 248, 0.3), rgba(99, 102, 241, 0.3));
+  opacity: 0.75;
+  filter: blur(24px);
+  transform: scale(1.05);
+  z-index: -1;
+}
+
+.badge {
+  @apply inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-1 text-xs font-medium uppercase tracking-[0.18em] text-slate-300;
+}
+
+.grid-auto-fit {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
